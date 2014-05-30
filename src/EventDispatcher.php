@@ -20,21 +20,21 @@ class EventDispatcher {
 
     public function fire(Event $event) {
         $eventClass = get_class($event);
-        if (! $handleData = $this->events[$eventClass]) {
+        if (! $handlersData = $this->events[$eventClass]) {
             throw new \CException("Event `$eventClass` not registered");
         }
         if(!$event->validate()) {
             throw new \CException("Event `$eventClass` is not valid");
         }
 
-        foreach ($handleData as $handlerData) {
+        foreach ($handlersData as $handlerData) {
             $handlerClass = $handlerData['class'];
             if (!is_subclass_of($handlerClass, Handler::className())) {
                 throw new \CException("Handler `$handlerClass` not subclass of ".Handler::className());
             }
             try {
                 /** @var $handler Handler */
-                $handler = new $handlerClass($event, isset($handleData['params']) ? $handleData['params'] : array());
+                $handler = new $handlerClass($event, isset($handlerData['params']) ? $handlerData['params'] : array());
                 $handler->run();
             }catch (\CException $e) {
                 $event->addHandleError($e->getMessage());
