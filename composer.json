@@ -15,5 +15,13 @@
         "psr-4": {
             "WS\\EventDispatcher\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WS\\EventDispatcher\\": "src/"
+        },
+        "files": [
+            "vendor/yiisoft/yii/framework/YiiBase.php"
+        ]
     }
 }
