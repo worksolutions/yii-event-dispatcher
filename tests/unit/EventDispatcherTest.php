@@ -8,14 +8,15 @@ class EventDispatcherTest extends PHPUnit_Framework_TestCase {
 
     public function testAttachDetachHandler() {
         $dispatcher = new EventDispatcher();
-        $this->assertEquals(0, count($dispatcher->events));
+        $this->assertArrayNotHasKey(TestEvent::className(), $dispatcher->events);
         $dispatcher->attachHandler(TestEvent::className(), TestHandler::className(), array(
             'testParam' => 1
         ));
-        $this->assertEquals(1, count($dispatcher->events));
+        $this->assertArrayHasKey(TestEvent::className(), $dispatcher->events);
+        $this->assertEquals(1, count($dispatcher->events[TestEvent::className()]));
 
         $dispatcher->detachHandler(TestHandler::className(), TestEvent::className());
-        $this->assertEquals(0, count($dispatcher->events));
+        $this->assertEquals(0, count($dispatcher->events[TestEvent::className()]));
     }
 
     public function testCallEvent() {
