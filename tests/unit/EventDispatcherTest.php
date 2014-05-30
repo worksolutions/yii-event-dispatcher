@@ -28,8 +28,16 @@ class TestEvent extends Event {
 }
 
 class TestHandler extends Handler {
+    static $processCallback;
 
     protected function process() {
+        if (!is_callable(static::$processCallback)) {
+            throw new \CException('Don`t callable process');
+        }
+        call_user_func(static::$processCallback, $this->getEvent(), $this->getParams());
+    }
 
+    static public function setProcessCallback($f) {
+        static::$processCallback = $f;
     }
 }
