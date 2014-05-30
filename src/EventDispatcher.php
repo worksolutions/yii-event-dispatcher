@@ -34,7 +34,7 @@ class EventDispatcher {
             }
             try {
                 /** @var $handler Handler */
-                $handler = new $handlerClass($event, $handleData['params'] ?: array());
+                $handler = new $handlerClass($event, isset($handleData['params']) ? $handleData['params'] : array());
                 $handler->run();
             }catch (\CException $e) {
                 $event->addHandleError($e->getMessage());
