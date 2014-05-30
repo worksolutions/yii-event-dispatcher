@@ -4,7 +4,7 @@ use WS\EventDispatcher\Event;
 use WS\EventDispatcher\EventDispatcher;
 use WS\EventDispatcher\Handler;
 
-class EventDispatcherTest extends CTestCase {
+class EventDispatcherTest extends PHPUnit_Framework_TestCase {
 
     public function testAttachDetachHandler() {
         $dispatcher = new EventDispatcher();
