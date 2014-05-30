@@ -1,0 +1,19 @@
+{
+    "name": "worksolutions/yii-ws-event-dispatcher",
+    "description": "Yii event dispatcher",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.0",
+        "yiisoft/yii": "*"
+    },
+    "require-dev": {
+        "league/phpunit-coverage-listener": "~1.0"
+    },
+    "authors": [
+    ],
+    "autoload": {
+        "psr-4": {
+            "WS\\EventDispatcher\\": "src/"
+        }
+    }
+}
