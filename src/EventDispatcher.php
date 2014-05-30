@@ -18,6 +18,14 @@ class EventDispatcher {
      */
     public $events = array();
 
+    public function createEvent($className, $params = null, $owner = null) {
+        if (!is_subclass_of($className, Event::className())) {
+            throw new \CException(sprintf('Class event `%s` must instanceof `%s`', $className, Event::className()));
+        }
+        /** @var $className Event */
+        return new $className($params, $owner);
+    }
+
     public function fire(Event $event) {
         $eventClass = get_class($event);
         if (! $handlersData = $this->events[$eventClass]) {
