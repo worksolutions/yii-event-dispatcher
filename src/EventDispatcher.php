@@ -16,7 +16,7 @@ class EventDispatcher {
      * )
      * @var array events
      */
-    public $events;
+    public $events = array();
 
     public function fire(Event $event) {
         $eventClass = get_class($event);
