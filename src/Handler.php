@@ -34,6 +34,22 @@ abstract class Handler {
 
     abstract protected function process();
 
+    /**
+     * @return array
+     */
+    public function getParams() {
+        return $this->_params;
+    }
+
+    /**
+     * @param array $params
+     * @return $this
+     */
+    public function setParams($params) {
+        $this->_params = $params;
+        return $this;
+    }
+
     protected function getEvent() {
         return $this->_event;
     }
