@@ -10,7 +10,7 @@ class EventDispatcherTest extends CTestCase {
         $dispatcher = new EventDispatcher();
         $this->assertNull($dispatcher->events);
         $dispatcher->attachHandler(TestEvent::className(), TestHandler::className(), array(
-            'testParan' => 1
+            'testParam' => 1
         ));
         $this->assertEquals(1, count($dispatcher->events));
 
