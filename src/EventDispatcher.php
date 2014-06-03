@@ -3,7 +3,7 @@
 namespace WS\EventDispatcher;
 
 
-class EventDispatcher {
+class EventDispatcher extends \CApplicationComponent {
 
     /**
      * EventDispatcher
@@ -28,9 +28,7 @@ class EventDispatcher {
 
     public function fire(Event $event) {
         $eventClass = get_class($event);
-        if (! $handlersData = $this->events[$eventClass]) {
-            throw new \CException("Event `$eventClass` not registered");
-        }
+        $handlersData = $this->_getHandlersData($eventClass);
         if(!$event->validate()) {
             throw new \CException("Event `$eventClass` is not valid");
         }
@@ -48,6 +46,7 @@ class EventDispatcher {
                 $event->addHandleError($e->getMessage());
             }
         }
+        return $this;
     }
 
     public function attachHandler($eventClass, $handlerClass, $handlerParams) {
@@ -69,6 +68,13 @@ class EventDispatcher {
         return $this->_detach($handlerClass, $eventClass);
     }
 
+    private function _getHandlersData($eventClass) {
+        if (!$handleData = $this->events[$eventClass]) {
+            throw new \CException("Event `$eventClass` not registered");
+        }
+        return $handleData;
+    }
+
     /**
      * @param $handlerClass
      * @param $eventClass
@@ -76,15 +82,14 @@ class EventDispatcher {
      * @throws \CException
      */
     private function _detach($handlerClass, $eventClass) {
-        if (!$handleData = $this->events[$eventClass]) {
-            throw new \CException("Event `$eventClass` not registered");
-        }
-        foreach ($handleData as $key => $handlerData) {
+        $handlersData = $this->_getHandlersData($eventClass);
+        foreach ($handlersData as $key => $handlerData) {
             if ($handlerClass != $handlerData['class']) {
                 continue;
             }
             unset($this->events[$eventClass][$key]);
             return $this;
         }
+        return $this;
     }
 }

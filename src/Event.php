@@ -71,7 +71,7 @@ abstract class Event extends \CModel {
         return $this;
     }
 
-    public function getHandleErorrs() {
+    public function getHandleErrors() {
         return $this->_handleErrors;
     }
 }
