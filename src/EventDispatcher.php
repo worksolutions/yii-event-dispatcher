@@ -18,6 +18,10 @@ class EventDispatcher extends \CApplicationComponent {
      */
     public $events = array();
 
+    static public function className() {
+        return get_called_class();
+    }
+
     public function createEvent($className, $params = null, $owner = null) {
         if (!is_subclass_of($className, Event::className())) {
             throw new \CException(sprintf('Class event `%s` must instanceof `%s`', $className, Event::className()));
