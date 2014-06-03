@@ -37,6 +37,8 @@ Usage examples
 
 #### Create handler class
 ```php
+use WS\EventDispatcher\Handler;
+
 class SomeHandler extends Handler {
     protected function identity() {
         // check the availability of execution
@@ -51,6 +53,8 @@ class SomeHandler extends Handler {
 
 #### Create event class
 ```php
+use WS\EventDispatcher\Event;
+
 class SomeEvent extends Event {
     public function attributeNames() {
         return array(
