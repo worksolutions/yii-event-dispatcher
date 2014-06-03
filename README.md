@@ -34,3 +34,44 @@ Usage examples
     //...
 )
 ```
+
+#### Create handler class
+```php
+class SomeHandler extends Handler {
+    protected function identity() {
+        // check the availability of execution
+        return true;
+    }
+
+    protected function process() {
+        // you handler code
+    }
+}
+```
+
+#### Create event class
+```php
+class SomeEvent extends Event {
+    public function attributeNames() {
+        return array(
+            'fieldName',
+            //...
+        );
+    }
+
+    public function rules() {
+        return array(
+            //validation rules
+        );
+    }
+}
+```
+
+#### Event call
+```php
+$dispatcher = Yii::app()->eventDispatcher;
+
+/** @var SomeEvent $event */
+$event = $dispatcher->createEvent(SomeEvent::className(), $eventTestParams);
+$dispatcher->fire($event);
+```
