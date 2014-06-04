@@ -18,6 +18,15 @@ Add a dependency to your project's composer.json:
 
 Usage examples
 --------------
+#### Event call
+```php
+$dispatcher = Yii::app()->eventDispatcher;
+
+/** @var SomeEvent $event */
+$event = $dispatcher->createEvent(SomeEvent::className(), $eventTestParams);
+$dispatcher->fire($event);
+```
+
 #### Config EventDispatcher component
 ```php
 'components' => array(
@@ -69,13 +78,4 @@ class SomeEvent extends Event {
         );
     }
 }
-```
-
-#### Event call
-```php
-$dispatcher = Yii::app()->eventDispatcher;
-
-/** @var SomeEvent $event */
-$event = $dispatcher->createEvent(SomeEvent::className(), $eventTestParams);
-$dispatcher->fire($event);
 ```
