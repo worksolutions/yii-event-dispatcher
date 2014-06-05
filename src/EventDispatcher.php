@@ -9,10 +9,12 @@ class EventDispatcher extends \CApplicationComponent {
      * EventDispatcher
      * events => array(
      *      SomeEvent::className() => array(
+     *          array(
      *              'class' => SomeHandler::className(),
      *              'params' => array()
      *          ),
-     *          ...
+     *          //...
+     *     ),
      * )
      * @var array events
      */

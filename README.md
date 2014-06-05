@@ -34,8 +34,10 @@ $dispatcher->fire($event);
         'class' => \WS\EventDispatcher\EventDispatcher::className(),
         'events' => array(
             SomeEvent::className() => array(
-                 'class' => SomeHandler::className(),
-                 'params' => array(),
+                array(
+                     'class' => SomeHandler::className(),
+                     'params' => array(),
+                ),
             ),
             //...
         ),
