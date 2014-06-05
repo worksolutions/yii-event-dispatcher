@@ -38,6 +38,7 @@ $dispatcher->fire($event);
                      'class' => SomeHandler::className(),
                      'params' => array(),
                 ),
+                //...
             ),
             //...
         ),
